@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,10 @@ namespace AbschlussprojektIHK
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            using(FileStream fs = new FileStream(@""))
+            {
+                File.Delete(@"");
+            }
         }
     }
 }

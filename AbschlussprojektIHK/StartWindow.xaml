@@ -11,9 +11,9 @@
         <Label Content="Vorname" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Content="Nachname" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top"/>
         <Label Content="Arbeitsmail des Ausbilders" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" Width="174"/>
-        <TextBox HorizontalAlignment="Left" Height="50" Margin="10,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="298" Background="#FFF0E8E8"/>
-        <TextBox HorizontalAlignment="Left" Height="50" Margin="10,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300" Background="#FFF0E8E8"/>
-        <TextBox HorizontalAlignment="Left" Height="50" Margin="10,183,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300" Background="#FFF0E8E8"/>
+        <TextBox x:Name="Tb_Surname" HorizontalAlignment="Left" Height="50" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298" Background="#FFF0E8E8"/>
+        <TextBox x:Name="Tb_Familyname" HorizontalAlignment="Left" Height="50" Margin="10,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Background="#FFF0E8E8"/>
+        <TextBox x:Name="Tb_Mail" HorizontalAlignment="Left" Height="50" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Background="#FFF0E8E8"/>
 
     </Grid>
 </Window>

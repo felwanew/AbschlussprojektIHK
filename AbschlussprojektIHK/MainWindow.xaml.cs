@@ -33,10 +33,7 @@ namespace AbschlussprojektIHK
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using(FileStream fs = new FileStream(@""))
-            {
-                File.Delete(@"");
-            }
+
         }
     }
 }

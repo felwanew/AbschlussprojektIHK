@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace AbschlussprojektIHK
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaktionslogik für MainWindowUserIsOnline.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindowUserIsOnline : Window
     {
-        public MainWindow()
+        public MainWindowUserIsOnline()
         {
             InitializeComponent();
         }
@@ -33,7 +33,10 @@ namespace AbschlussprojektIHK
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            SecurityQuestionReset securityQuestionReset = new SecurityQuestionReset();
+            securityQuestionReset.Show();
+            MainWindowUserIsOnline mainWindow = new MainWindowUserIsOnline();
+            mainWindow.Close();
         }
     }
 }

@@ -12,7 +12,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Newtonsoft.Json;
+/*{
+    public class JSONString
+    {
+        public static List<Buch> ErstelleKatalog(Bücherkatalog bücherkatalog)
+        {
+            var json = File.ReadAllText(@"C:\Users\wanwitfe\source\repos\ExersiceJSON\ExersiceJSON\Buecherei\books.json");
+            return bücherkatalog.KatalogBücher = JsonConvert.DeserializeObject<List<Buch>>(json);
+        }
+        static public void SpeichereBücherkatalog(List<Buch> BücherListe)
+        {
+            string json = JsonConvert.SerializeObject(BücherListe);
+            System.IO.File.WriteAllText(@"C:\Users\wanwitfe\source\repos\ExersiceJSON\ExersiceJSON\Buecherei\books.json", json);
+        }
+        public static List<Exemplar> ErstelleInventar(List<Exemplar> ExemplarListe)
+        {
+            string json = JsonConvert.SerializeObject(ExemplarListe);
+            System.IO.File.WriteAllText(@"C:\Users\wanwitfe\source\repos\ExersiceJSON\ExersiceJSON\Buecherei\exemplare.json", json);
+        }
+    }
+}*/
 
 namespace AbschlussprojektIHK
 {
@@ -23,11 +43,15 @@ namespace AbschlussprojektIHK
     {
         public StartWindow()
         {
-
+            
             InitializeComponent();
-            if (File.Exists(@"**\test.txt"))
+
+            if (File.Exists(@"User.json"))
             {
-                MainWindow mainWindow = new MainWindow();
+                User user = new User();
+                var json = File.ReadAllText(@"User.json");
+                bool userIsOnline = Convert.ToBoolean(json[3]);
+                MainWindowUserIsOnline mainWindow = new MainWindowUserIsOnline();
                 mainWindow.Show();
                 Close();
             }
@@ -35,23 +59,19 @@ namespace AbschlussprojektIHK
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            string path = @"**\test.txt";
+            MainWindowUserIsOnline mainWindow = new MainWindowUserIsOnline();
 
-                using (FileStream fs = File.Create(path))
-                {
-                    AddText(fs, Tb_Surname.Text);
-                    AddText(fs, Tb_Familyname.Text);
-                    AddText(fs, Tb_Mail.Text);
-                }
+            User user = new User
+            {
+                Firstname = Tb_Surname.Text,
+                Familyname = Tb_Familyname.Text,
+                MailOfInstructor = Tb_Mail.Text,
+                UserIsOnline = false
+            };
+            string json = JsonConvert.SerializeObject(user, Formatting.Indented);
+            System.IO.File.WriteAllText(@"User.json", json);
             mainWindow.Show();
             Close();
-        }
-
-        private static void AddText(FileStream fs, string value)
-        {
-            byte[] info = new UTF8Encoding(true).GetBytes(value);
-            fs.Write(info, 0, info.Length);
         }
     }
 }

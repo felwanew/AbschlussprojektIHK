@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
+
 /*{
     public class JSONString
     {
@@ -48,18 +49,29 @@ namespace AbschlussprojektIHK
 
             if (File.Exists(@"User.json"))
             {
-                User user = new User();
                 var json = File.ReadAllText(@"User.json");
-                bool userIsOnline = Convert.ToBoolean(json[3]);
-                MainWindowUserIsOnline mainWindow = new MainWindowUserIsOnline();
-                mainWindow.Show();
-                Close();
+                User user = JsonConvert.DeserializeObject<User>(json);
+
+                if (user.UserIsOnline == false)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    //change of content of StatusOfPresence
+                    mainWindow.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.ShowDialog();
+                    this.Close();
+                }
+
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Btn_Submit_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowUserIsOnline mainWindow = new MainWindowUserIsOnline();
+            MainWindow mainWindow = new MainWindow();
 
             User user = new User
             {
@@ -70,8 +82,8 @@ namespace AbschlussprojektIHK
             };
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             System.IO.File.WriteAllText(@"User.json", json);
-            mainWindow.Show();
-            Close();
+            mainWindow.ShowDialog();
+            this.Close();
         }
     }
 }

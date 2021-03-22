@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="JSON.cs" />
     <Compile Include="SecurityQuestionReset.xaml.cs">
       <DependentUpon>SecurityQuestionReset.xaml</DependentUpon>
     </Compile>

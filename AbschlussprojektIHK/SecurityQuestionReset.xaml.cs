@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
+using System.Windows.Input; 
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -27,9 +28,17 @@ namespace AbschlussprojektIHK
 
         private void Btn_ResetOk_Click(object sender, RoutedEventArgs e)
         {
-            System.IO.File.Delete(@"User.json");
+            File.Delete(@"User.json");
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
+            Close();
+        }
+
+        private void Btn_Abbrechen_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.ShowDialog();
+            Close();
         }
     }
 }

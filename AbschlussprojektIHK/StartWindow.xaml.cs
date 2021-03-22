@@ -51,28 +51,14 @@ namespace AbschlussprojektIHK
             {
                 var json = File.ReadAllText(@"User.json");
                 User user = JsonConvert.DeserializeObject<User>(json);
-
-                if (user.UserIsOnline == false)
-                {
-                    MainWindow mainWindow = new MainWindow();
-                    //change of content of StatusOfPresence
-                    mainWindow.ShowDialog();
-                    this.Close();
-                }
-                else
-                {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.ShowDialog();
-                    this.Close();
-                }
-
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.ShowDialog();
+                this.Close();
             }
         }
 
         private void Btn_Submit_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-
             User user = new User
             {
                 Firstname = Tb_Surname.Text,
@@ -81,7 +67,8 @@ namespace AbschlussprojektIHK
                 UserIsOnline = false
             };
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
-            System.IO.File.WriteAllText(@"User.json", json);
+            File.WriteAllText(@"User.json", json);
+            MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();
             this.Close();
         }

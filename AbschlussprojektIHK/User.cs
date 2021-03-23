@@ -26,13 +26,5 @@ namespace AbschlussprojektIHK
             MailOfInstructor = _mailOfInstructor;
             UserIsOnline = _userIsOnline;
         }
-        /*static public User LoadUser()
-        {
-            var json = File.ReadAllText(@"User.json");
-            return new User(Convert.ToString(json[0]),
-                            Convert.ToString(json[1]),
-                            Convert.ToString(json[2]),
-                            Convert.ToBoolean(json[3]));
-        }*/
     }
 }

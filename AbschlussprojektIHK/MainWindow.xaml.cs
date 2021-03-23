@@ -25,33 +25,28 @@ namespace AbschlussprojektIHK
         public MainWindow()
         {
             InitializeComponent();
-            //change of content of StatusOfPresence
-            var json = File.ReadAllText(@"User.json");
-            User user = JsonConvert.DeserializeObject<User>(json);
+            //change content of StatusOfPresence
+            User user = JSON.DeserializeUser();
             if (user.UserIsOnline == false)
             { // user is offline = false    user is online = true
                 Btn_CurrentStatusOfPresence.Content = "Anmelden";
                 Tb_CurrentStatusOfPresence.Text = "Sie sind offiziell abgemeldet";
                 user.UserIsOnline = true;
-                json = JsonConvert.SerializeObject(user);
-                File.WriteAllText(@"User.json", json);
+                JSON.SerializeUser(user);
             }
             else
             {
                 Btn_CurrentStatusOfPresence.Content = "Abmelden";
                 Tb_CurrentStatusOfPresence.Text = "Sie sind offiziell angemeldet";
                 user.UserIsOnline = false;
-                json = JsonConvert.SerializeObject(user);
-                File.WriteAllText(@"User.json", json);
+                JSON.SerializeUser(user);
             }
-                
         }
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SecurityQuestionReset securityQuestionReset = new SecurityQuestionReset();
@@ -61,26 +56,21 @@ namespace AbschlussprojektIHK
 
         private void Btn_CurrentStatusOfPresence_Click(object sender, RoutedEventArgs e)
         {
-            var json = File.ReadAllText(@"User.json");
-            User user = JsonConvert.DeserializeObject<User>(json);
+            User user = JSON.DeserializeUser();
             if (user.UserIsOnline == false)
             { // user is offline = false    user is online = true
                 Btn_CurrentStatusOfPresence.Content = "Anmelden";
                 Tb_CurrentStatusOfPresence.Text = "offline";
-                user.UserIsOnline = true;
                 Tb_StatusOfWork.IsEnabled = true;
-                json = JsonConvert.SerializeObject(user);
-                File.WriteAllText(@"User.json", json);
+                JSON.ChangeUserIsOnline(user);
                 //send Mail is missing
             }
             else
             {
                 Btn_CurrentStatusOfPresence.Content = "Abmelden";
                 Tb_CurrentStatusOfPresence.Text = "online";
-                user.UserIsOnline = false;
                 Tb_StatusOfWork.IsEnabled = false;
-                json = JsonConvert.SerializeObject(user);
-                File.WriteAllText(@"User.json", json);
+                JSON.ChangeUserIsOnline(user);
             }
         }
     }

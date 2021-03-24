@@ -45,6 +45,7 @@ namespace AbschlussprojektIHK
                 MailOfInstructor = Tb_Mail.Text,
                 UserIsOnline = false
             };
+            //Are the Values valid?
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText(@"User.json", json);
             MainWindow mainWindow = new MainWindow();

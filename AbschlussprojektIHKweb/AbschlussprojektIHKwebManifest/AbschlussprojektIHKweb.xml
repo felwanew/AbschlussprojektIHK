@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+<OfficeApp 
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+          xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" 
+          xsi:type="MailApp">
+
+  <!-- Beginn mit Standardeinstellungen: Add-In-Metadaten, die für alle Versionen von Office verwendet werden, wenn keine Überschreibungen bereitgestellt werden. -->
+
+  <!-- WICHTIG: Die ID muss eindeutig für Ihr Add-In sein. Wenn Sie dieses Manifest erneut verwenden, stellen Sie sicher, dass Sie diese ID in eine neue GUID ändern. -->
+  <Id>8a189400-99a1-43be-88b5-d95e93770f2f</Id>
+
+  <!--Die Version. Updates aus dem Store werden nur ausgelöst, wenn eine Versionsänderung vorliegt. -->
+  <Version>1.0.0.0</Version>
+  <ProviderName>[Anbietername]</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <!-- Der Anzeigename Ihres Add-Ins. Er wird im Store und an verschiedenen Stellen in der Office-Benutzeroberfläche verwendet, z. B. im Dialogfeld "Add-Ins". -->
+  <DisplayName DefaultValue="AbschlussprojektIHKweb" />
+  <Description DefaultValue="AbschlussprojektIHKweb"/>
+  <IconUrl DefaultValue="~remoteAppUrl/Images/icon64.png"/>
+
+  <SupportUrl DefaultValue="http://www.contoso.com" />
+  <!-- Domänen, die beim Navigieren zulässig sind. Wenn Sie z. B. "ShowTaskpane" verwenden und dann ein href-Link auftritt, ist die Navigation nur zulässig, wenn sich die Domäne in dieser Liste befindet. -->
+  <AppDomains>
+    <AppDomain>AppDomain1</AppDomain>
+    <AppDomain>AppDomain2</AppDomain>
+    <AppDomain>AppDomain3</AppDomain>
+  </AppDomains>
+  <!--Beendet die Standardeinstellungen. -->
+  
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="~remoteAppUrl/MessageRead.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadWriteItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox" />
+      </bt:Sets>
+    </Requirements>
+    <Hosts>
+      <Host xsi:type="MailHost">
+
+        <DesktopFormFactor>
+          <!-- Der Speicherort der Funktionen, die UI-lose Schaltflächen auslösen können (ExecuteFunction-Aktionen). -->
+          <FunctionFile resid="functionFile" />
+
+          <!-- Der Nachrichtenlesevorgang. -->
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <!-- Verwenden Sie die Standardregisterkarte des "ExtensionPoint", oder erstellen Sie mit <CustomTab id="MeineRegisterkarte"> benutzerdefinierte Registerkarten. -->
+            <OfficeTab id="TabDefault">
+              <!-- Bis zu 6 Gruppen wurden pro Registerkarte hinzugefügt. -->
+              <Group id="msgReadGroup">
+                <Label resid="groupLabel" />
+                <!-- Starten des Add-Ins: Schaltfläche "Aufgabenbereich" -->
+                <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Label resid="paneReadButtonLabel" />
+                  <Supertip>
+                    <Title resid="paneReadSuperTipTitle" />
+                    <Description resid="paneReadSuperTipDescription" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon16" />
+                    <bt:Image size="32" resid="icon32" />
+                    <bt:Image size="80" resid="icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="messageReadTaskPaneUrl" />
+                  </Action>
+                </Control>
+                <!-- Navigieren Sie zu http://aka.ms/ButtonCommands, um zu erfahren, wie weitere Steuerelemente hinzugefügt werden: "ExecuteFunction" und "Menu". -->
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+          <!-- Navigieren Sie zu http://aka.ms/ExtensionPointsCommands, um zu erfahren, wie weitere Erweiterungspunkte hinzugefügt werden: "MessageRead", "AppointmentOrganizer", "AppointmentAttendee" -->
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon16" DefaultValue="~remoteAppUrl/Images/icon16.png"/>
+        <bt:Image id="icon32" DefaultValue="~remoteAppUrl/Images/icon32.png"/>
+        <bt:Image id="icon80" DefaultValue="~remoteAppUrl/Images/icon80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="functionFile" DefaultValue="~remoteAppUrl/Functions/FunctionFile.html"/>
+        <bt:Url id="messageReadTaskPaneUrl" DefaultValue="~remoteAppUrl/MessageRead.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="groupLabel" DefaultValue="My Add-in Group"/>
+        <bt:String id="customTabLabel"  DefaultValue="My Add-in Tab"/>
+        <bt:String id="paneReadButtonLabel" DefaultValue="Display all properties"/>
+        <bt:String id="paneReadSuperTipTitle" DefaultValue="Get all properties"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="paneReadSuperTipDescription" DefaultValue="Opens a pane displaying all available properties. This is an example of a button that opens a task pane."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

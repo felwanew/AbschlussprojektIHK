@@ -7,7 +7,7 @@ namespace AbschlussprojektIHKwebWeb
 {
     public class Email
     {
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        private void ThisAddIn_Startup(object sender, EventArgs e)
         {
             SendEmailtoContacts();
         }

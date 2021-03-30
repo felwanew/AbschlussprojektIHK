@@ -68,8 +68,8 @@ namespace AbschlussprojektIHK
                 Tb_StatusOfWork.IsEnabled = true;
                 JSON.ChangeUserIsOnline(user);
                 MAPI mapi = new MAPI();
-                mapi.AddRecipientTo("felwanew@gmail.com");
-                mapi.SendMailPopup("subject", "body");
+                mapi.AddRecipientTo("felwanew@outlook.com");
+                mapi.SendMailDirect("subject", "body");
                 //send Mail is missing
             }
             else

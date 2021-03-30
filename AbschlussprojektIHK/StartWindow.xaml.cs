@@ -28,7 +28,7 @@ namespace AbschlussprojektIHK
             
             InitializeComponent();
 
-            if (File.Exists(@"User.json"))
+            if (File.Exists(@"C:\Users\wanwitfe\source\repos\AbschlussprojektIHK\AbschlussprojektIHK\bin\Debug\User.json"))
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.ShowDialog();
@@ -47,7 +47,7 @@ namespace AbschlussprojektIHK
             };
             //Are the Values valid?
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
-            File.WriteAllText(@"User.json", json);
+            File.WriteAllText(@"C:\Users\wanwitfe\source\repos\AbschlussprojektIHK\AbschlussprojektIHK\bin\Debug\User.json", json);
             MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();
             this.Close();

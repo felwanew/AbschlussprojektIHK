@@ -21,6 +21,5 @@
         <TextBox x:Name="Tb_StatusOfWork" HorizontalAlignment="Left" Height="236" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Background="#FFF0E8E8" Width="525" Grid.ColumnSpan="4" AutomationProperties.Name="Tb_"/>
         <Button x:Name="Btn_CurrentStatusOfPresence" Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="29.666,245,0,0" Grid.Row="1" VerticalAlignment="Top" Width="176" Height="52" Click="Btn_CurrentStatusOfPresence_Click"/>
         <TextBox x:Name="Tb_CurrentStatusOfPresence" HorizontalAlignment="Left" Height="23" Margin="10,5,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="3"/>
-
     </Grid>
 </Window>

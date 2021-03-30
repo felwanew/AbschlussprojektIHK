@@ -14,6 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.InteropServices;
+//using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace AbschlussprojektIHK
 {
@@ -63,6 +67,9 @@ namespace AbschlussprojektIHK
                 Tb_CurrentStatusOfPresence.Text = "offline";
                 Tb_StatusOfWork.IsEnabled = true;
                 JSON.ChangeUserIsOnline(user);
+                MAPI mapi = new MAPI();
+                mapi.AddRecipientTo("felwanew@gmail.com");
+                mapi.SendMailPopup("subject", "body");
                 //send Mail is missing
             }
             else

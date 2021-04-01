@@ -45,12 +45,14 @@ namespace AbschlussprojektIHK
                 MailOfInstructor = Tb_Mail.Text,
                 UserIsOnline = false
             };
-            //Are the Values valid?
+            //Are the Values valid
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText(@"C:\Users\wanwitfe\source\repos\AbschlussprojektIHK\AbschlussprojektIHK\bin\Debug\User.json", json);
+
             MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();
             this.Close();
+
         }
     }
 }

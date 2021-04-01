@@ -236,3 +236,10 @@ namespace AbschlussprojektIHK
         public IntPtr entryID;
     }
 }
+
+
+
+
+
+
+//https://www.codeproject.com/Articles/17561/Programmatically-adding-attachments-to-emails-in-C?fid=384422&df=90&mpp=25&sort=Position&spc=Relaxed&prof=True&view=Normal&fr=26#xx0xx

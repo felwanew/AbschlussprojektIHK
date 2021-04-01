@@ -49,13 +49,14 @@ namespace AbschlussprojektIHK
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Close();
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            this.Close();
             SecurityQuestionReset securityQuestionReset = new SecurityQuestionReset();
             securityQuestionReset.ShowDialog();
-            Close();
+            
         }
 
         private void Btn_CurrentStatusOfPresence_Click(object sender, RoutedEventArgs e)

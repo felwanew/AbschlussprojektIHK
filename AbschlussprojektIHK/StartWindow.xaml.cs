@@ -48,9 +48,10 @@ namespace AbschlussprojektIHK
             //Are the Values valid?
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText(@"User.json", json);
+            this.Close();
             MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();
-            this.Close();
+
         }
     }
 }

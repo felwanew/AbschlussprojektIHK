@@ -32,12 +32,12 @@ namespace AbschlussprojektIHK
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             Close();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Close();
         }
 
         private void Btn_Abbrechen_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
             Close();
         }
     }

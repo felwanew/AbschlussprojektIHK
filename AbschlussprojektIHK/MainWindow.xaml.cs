@@ -55,7 +55,7 @@ namespace AbschlussprojektIHK
         {
             SecurityQuestionReset securityQuestionReset = new SecurityQuestionReset();
             securityQuestionReset.ShowDialog();
-            Close();
+
         }
 
         private void Btn_CurrentStatusOfPresence_Click(object sender, RoutedEventArgs e)
@@ -68,7 +68,7 @@ namespace AbschlussprojektIHK
                 Tb_StatusOfWork.IsEnabled = true;
                 JSON.ChangeUserIsOnline(user);
                 MAPI mapi = new MAPI();
-                mapi.AddRecipientTo("felwanew@outlook.com");
+                mapi.AddRecipientTo("felwanew@outlook.de");
                 mapi.SendMailDirect("subject", "body");
                 //send Mail is missing
             }

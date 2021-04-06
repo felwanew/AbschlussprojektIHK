@@ -30,23 +30,22 @@ namespace AbschlussprojektIHK
         {
             InitializeComponent();
             //change content of StatusOfPresence
-            User user = JSON.DeserializeUser();
+            User user = (User)JSON.DeserializePath(@"User.json");
             if (user.UserIsOnline == false)
             { // user is offline = false    user is online = true
                 Btn_CurrentStatusOfPresence.Content = "Anmelden";
-                Tb_CurrentStatusOfPresence.Text = "Sie sind offiziell abgemeldet";
+                Tb_CurrentStatusOfPresence.Text = "Sie sind abgemeldet";
                 user.UserIsOnline = true;
-                JSON.SerializeUser(user);
+                JSON.SerializePath(user, @"User.json");
             }
             else
             {
                 Btn_CurrentStatusOfPresence.Content = "Abmelden";
-                Tb_CurrentStatusOfPresence.Text = "Sie sind offiziell angemeldet";
+                Tb_CurrentStatusOfPresence.Text = "Sie sind angemeldet";
                 user.UserIsOnline = false;
-                JSON.SerializeUser(user);
+                JSON.SerializePath(user, @"User.json");
             }
         }
-
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -56,30 +55,32 @@ namespace AbschlussprojektIHK
             this.Close();
             SecurityQuestionReset securityQuestionReset = new SecurityQuestionReset();
             securityQuestionReset.ShowDialog();
-            
         }
-
-        private void Btn_CurrentStatusOfPresence_Click(object sender, RoutedEventArgs e)
+        private async void Btn_CurrentStatusOfPresence_ClickAsync(object sender, RoutedEventArgs e)
         {
-            User user = JSON.DeserializeUser();
+            User user = (User)JSON.DeserializePath(@"User.json");
+            string statusOfPresence;
             if (user.UserIsOnline == false)
             { // user is offline = false    user is online = true
                 Btn_CurrentStatusOfPresence.Content = "Anmelden";
                 Tb_CurrentStatusOfPresence.Text = "offline";
+                statusOfPresence = Tb_CurrentStatusOfPresence.Text;
                 Tb_StatusOfWork.IsEnabled = true;
                 JSON.ChangeUserIsOnline(user);
-                MAPI mapi = new MAPI();
-                mapi.AddRecipientTo("felwanew@outlook.de");
-                mapi.SendMailDirect("subject", "body");
+                //MAPI mapi = new MAPI();
+                //mapi.AddRecipientTo("felwanew@outlook.de");
+                //mapi.SendMailDirect("subject", "body");
                 //send Mail is missing
             }
             else
             {
                 Btn_CurrentStatusOfPresence.Content = "Abmelden";
                 Tb_CurrentStatusOfPresence.Text = "online";
+                statusOfPresence = Tb_CurrentStatusOfPresence.Text;
                 Tb_StatusOfWork.IsEnabled = false;
                 JSON.ChangeUserIsOnline(user);
             }
+            await ClsEmail.Send_EmailAsync(user.Firstname + " " + user.Familyname + " ist jetzt " + statusOfPresence,Tb_StatusOfWork.Text); //probably issue with the smtp server
         }
     }
 }

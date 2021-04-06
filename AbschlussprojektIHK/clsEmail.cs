@@ -6,19 +6,17 @@ using System.Threading.Tasks;           //*async
 using System.Net.Mail;                  //*smtp client
 using System.Net;                       //*Network Credential
 using System.Windows;
-//using Windows.ApplicationModel.Email;   //*email
+using Windows.ApplicationModel.Email;   //*email
 using Windows.Foundation;
 
 namespace AbschlussprojektIHK
 {
-    public static class clsEmail
-
+    public static class ClsEmail
     {
 
-        //============< clsEmail >============
+        //============< ClsEmail >============
 
-        public static bool send_Email(string sTitle, string sText)
-
+        public static async Task<bool> Send_EmailAsync(string sTitle, string sText)
         {
             //------------< send_Email() >------------
 
@@ -28,9 +26,9 @@ namespace AbschlussprojektIHK
 
             MailMessage email = new MailMessage();
 
-            email.To.Add("felwanew@outlook.de");
+            email.To.Add("felwanew@outlook.de");            //mail of instructor
 
-            email.From = new MailAddress("Searchagent");
+            email.From = new MailAddress("felwanew@gmail.com", "Angezeigter Name");     //mail of referee
 
             email.Subject = sTitle;
 
@@ -43,34 +41,31 @@ namespace AbschlussprojektIHK
             //< email-server >
 
             SmtpClient client = new SmtpClient();
+            try
+            {
+                client.Host = "smtp-mail.outlook.com"; //Smtp Server
+            }
+            catch(ArgumentException e)
+            {
+                Console.Error.WriteLine(e);
+            }
 
-            //client.Host = app_settings._Smtp_Server;
 
             client.UseDefaultCredentials = false;
 
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-            //< no ssl >
-
-            client.Port = 25;
-
-            client.EnableSsl = false;
-
-            //</ no ssl >
-
-
-
             //< ssl >
 
             //*securesmpt.t-online.de
 
-            //client.Port = 587;
+            client.Port = 587;
 
-            //client.EnableSsl = true;
+            client.EnableSsl = true;
 
             //</ ssl >
 
-            //client.Credentials = new NetworkCredential(app_settings._Smtp_User, app_settings._Smtp_Password);
+            client.Credentials = new NetworkCredential("felwanew@gmail.com", "Fr5!=Skl");   //Usermail, Userpassword for Mailaccount --> definied in JSON
 
             //</ email-server >
 
@@ -78,9 +73,9 @@ namespace AbschlussprojektIHK
 
             //< send >
 
-            //await client.SendMailAsync(email);      //*no error message
+            await client.SendMailAsync(email);      //*no error message
 
-            client.Send(email);                       //*with error message
+            //client.Send(email);                   //*with error message
 
             //</ send >
 
@@ -92,7 +87,7 @@ namespace AbschlussprojektIHK
 
         }
 
-        //============</ clsEmail >============
+        //============</ ClsEmail >============
 
     }
 }

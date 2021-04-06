@@ -50,7 +50,7 @@ namespace AbschlussprojektIHK
             msg.noteText = strBody;
 
             msg.recips = GetRecipients(out msg.recipCount);
-            msg.files = GetAttachments(out msg.fileCount);
+            //msg.files = GetAttachments(out msg.fileCount);
 
             m_lastError = MAPISendMail(new IntPtr(0), new IntPtr(0), msg, how,
                 0);

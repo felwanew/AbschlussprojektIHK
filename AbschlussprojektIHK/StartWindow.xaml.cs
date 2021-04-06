@@ -24,10 +24,10 @@ namespace AbschlussprojektIHK
     public partial class StartWindow : Window
     {
         public StartWindow()
-        {
-            
+        {            
             InitializeComponent();
-
+            EmailAddress emailAddress = new EmailAddress();
+            emailAddress = (EmailAddress)JSON.DeserializePath(@"Email.json");
             if (File.Exists(@"User.json"))
             {
                 MainWindow mainWindow = new MainWindow();
@@ -45,13 +45,12 @@ namespace AbschlussprojektIHK
                 MailOfInstructor = Tb_Mail.Text,
                 UserIsOnline = false
             };
-            //Are the Values valid
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText(@"User.json", json);
-            this.Close();
+
             MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();
-
+            this.Close();
         }
     }
 }

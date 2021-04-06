@@ -29,18 +29,16 @@ namespace AbschlussprojektIHK
         private void Btn_ResetOk_Click(object sender, RoutedEventArgs e)
         {
             File.Delete(@"User.json");
-
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
-            this.Close();
+            Close();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Close();
         }
 
         private void Btn_Abbrechen_Click(object sender, RoutedEventArgs e)
-        {            
-            this.Close();
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
-
+        {
+            Close();
         }
     }
 }

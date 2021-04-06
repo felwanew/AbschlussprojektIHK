@@ -13,19 +13,19 @@ namespace AbschlussprojektIHK
         public static User DeserializeUser()
         {
             User user = new User();
-            var json = File.ReadAllText(@"C:\Users\wanwitfe\source\repos\AbschlussprojektIHK\AbschlussprojektIHK\bin\Debug\User.json");
+            var json = File.ReadAllText(@"User.json");
             return user = JsonConvert.DeserializeObject<User>(json);
         }
         static public void SerializeUser(User user)
         {
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
-            File.WriteAllText(@"C:\Users\wanwitfe\source\repos\AbschlussprojektIHK\AbschlussprojektIHK\bin\Debug\User.json", json);
+            File.WriteAllText(@"User.json", json);
         }
         static public void ChangeUserIsOnline(User user)
         {
             user.UserIsOnline = !user.UserIsOnline;
             var json = JsonConvert.SerializeObject(user);
-            File.WriteAllText(@"C:\Users\wanwitfe\source\repos\AbschlussprojektIHK\AbschlussprojektIHK\bin\Debug\User.json", json);
+            File.WriteAllText(@"User.json", json);
         }
     }
 }

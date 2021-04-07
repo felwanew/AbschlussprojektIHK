@@ -26,8 +26,6 @@ namespace AbschlussprojektIHK
         public StartWindow()
         {            
             InitializeComponent();
-            EmailAddress emailAddress = new EmailAddress();
-            emailAddress = (EmailAddress)JSON.DeserializePath(@"Email.json");
             if (File.Exists(@"User.json"))
             {
                 MainWindow mainWindow = new MainWindow();
@@ -42,8 +40,10 @@ namespace AbschlussprojektIHK
             {
                 Firstname = Tb_Surname.Text,
                 Familyname = Tb_Familyname.Text,
-                MailOfInstructor = Tb_Mail.Text,
-                UserIsOnline = false
+                MailOfInstructor = Tb_MailOfInstructor.Text,
+                UserIsOnline = false,
+                EmailUser = Tb_MailOfTrainee.Text,
+                PasswordUser = Pb_PasswordOfTraineeMail.Password
             };
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText(@"User.json", json);

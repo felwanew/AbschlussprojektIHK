@@ -26,9 +26,9 @@ namespace AbschlussprojektIHK
 
             MailMessage email = new MailMessage();
 
-            email.To.Add("felwanew@outlook.de");            //mail of instructor
+            email.To.Add("felwanew@gmail.com");            //mail of instructor
 
-            email.From = new MailAddress("felwanew@gmail.com", "Angezeigter Name");     //mail of referee
+            email.From = new MailAddress("felwanew@outlook.de", "Angezeigter Name");     //mail of referee
 
             email.Subject = sTitle;
 
@@ -57,15 +57,13 @@ namespace AbschlussprojektIHK
 
             //< ssl >
 
-            //*securesmpt.t-online.de
-
             client.Port = 587;
 
             client.EnableSsl = true;
 
             //</ ssl >
 
-            client.Credentials = new NetworkCredential("felwanew@gmail.com", "Fr5!=Skl");   //Usermail, Userpassword for Mailaccount --> definied in JSON
+            client.Credentials = new NetworkCredential("felwanew@outlook.de", "Q.E.D.-9.99");   //Usermail, Userpassword for Mailaccount --> definied in JSON
 
             //</ email-server >
 

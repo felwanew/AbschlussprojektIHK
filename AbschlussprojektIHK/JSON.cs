@@ -10,15 +10,15 @@ namespace AbschlussprojektIHK
 {
     class JSON
     {
-        static public object DeserializePath(string path)
+        static public User DeserializeUser()
         {
-            var json = File.ReadAllText(path);
-            return _ = JsonConvert.DeserializeObject<object>(json);
+            var json = File.ReadAllText(@"User.json");
+            return _ = JsonConvert.DeserializeObject<User>(json);
         }
-        static public void SerializePath(User user,string path)
+        static public void SerializeUser(User user)
         {
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
-            File.WriteAllText(path, json);
+            File.WriteAllText(@"User.json", json);
         }
         static public void ChangeUserIsOnline(User user)
         {

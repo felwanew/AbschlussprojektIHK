@@ -18,6 +18,7 @@ namespace AbschlussprojektIHK
 
         public static async Task<bool> Send_EmailAsync(string sTitle, string sText)
         {
+            
             //------------< send_Email() >------------
 
             //send email with uwp and smtp-server
@@ -28,7 +29,7 @@ namespace AbschlussprojektIHK
 
             email.To.Add("felwanew@gmail.com");            //mail of instructor
 
-            email.From = new MailAddress("felwanew@outlook.de", "Angezeigter Name");     //mail of referee
+            email.From = new MailAddress("felwanew@outlook.de", "");     //mail of referee
 
             email.Subject = sTitle;
 

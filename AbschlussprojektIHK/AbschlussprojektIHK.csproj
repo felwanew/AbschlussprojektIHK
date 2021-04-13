@@ -74,6 +74,9 @@
     </ApplicationDefinition>
     <Compile Include="ClsEmail.cs" />
     <Compile Include="JSON.cs" />
+    <Compile Include="PasswordCheck.xaml.cs">
+      <DependentUpon>PasswordCheck.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SecurityQuestionReset.xaml.cs">
       <DependentUpon>SecurityQuestionReset.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PasswordCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SecurityQuestionReset.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

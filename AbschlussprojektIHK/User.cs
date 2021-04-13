@@ -18,19 +18,16 @@ namespace AbschlussprojektIHK
         public string MailOfInstructor { get; set; }
         [JsonProperty("UserIsOnline")]
         public bool UserIsOnline { get; set; }
-        [JsonProperty("UserIsOnline")]
+        [JsonProperty("EmailUser")]
         public string EmailUser { get; set; }
-        [JsonProperty("UserIsOnline")]
-        public string PasswordUser { get; set; }
         public User() { }
-        public User(string _firstname, string _familyname, string _mailOfInstructor, bool _userIsOnline, string _emailUser, string _passwordUser)
+        public User(string _firstname, string _familyname, string _mailOfInstructor, bool _userIsOnline, string _emailUser)
         {
             Firstname = _firstname;
             Familyname = _familyname;
             MailOfInstructor = _mailOfInstructor;
             UserIsOnline = _userIsOnline;
             EmailUser = _emailUser;
-            PasswordUser = _passwordUser;
         }
     }
 }

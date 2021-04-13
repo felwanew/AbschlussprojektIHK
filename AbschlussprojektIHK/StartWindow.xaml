@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbschlussprojektIHK"
-        mc:Ignorable="d" Height="336.708" Width="231.804" Background="White">
+        mc:Ignorable="d" Height="285.329" Width="226.816" Background="White">
     <Grid Margin="0,0,2,0" MinWidth="100" MinHeight="99">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="Btn_Submit" Content="Bestätigen" HorizontalAlignment="Left" Margin="9,271,0,0" VerticalAlignment="Top" Width="197" Height="25" Click="Btn_Submit_Click"/>
+        <Button x:Name="Btn_Submit" Content="Bestätigen" HorizontalAlignment="Left" Margin="9,218,0,0" VerticalAlignment="Top" Width="197" Height="25" Click="Btn_Submit_Click"/>
         <Label x:Name="Lbl_Firstname" Content="Vorname" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Height="26"/>
         <Label x:Name="Lbl_Familyname" Content="Nachname" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Height="26" Width="67"/>
         <Label x:Name="Lbl_MailOfInstructor" Content="Mail des Ausbilders" HorizontalAlignment="Left" Margin="9,111,0,0" VerticalAlignment="Top" Width="174" Height="26"/>
@@ -20,8 +20,6 @@
         <TextBox x:Name="Tb_Familyname" HorizontalAlignment="Left" Height="24" Margin="9,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Background="#FFF0E8E8"/>
         <Label x:Name="Lbl_MailOfTrainee" Content="Mail des Azubis" HorizontalAlignment="Left" Margin="9,162,0,0" VerticalAlignment="Top" Width="174" Height="26"/>
         <TextBox x:Name="Tb_MailOfTrainee" HorizontalAlignment="Left" Height="25" Margin="10,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Background="#FFF0E8E8"/>
-        <Label x:Name="Lbl_PasswordforTraineeMail" Content="Arbeitsmail des Ausbilders" HorizontalAlignment="Left" Margin="9,213,0,0" VerticalAlignment="Top" Width="174" Height="26"/>
-        <PasswordBox x:Name="Pb_PasswordOfTraineeMail" HorizontalAlignment="Left" Margin="9,239,0,0" VerticalAlignment="Top" Width="197" Height="25" Background="#FFF0E8E8"/>
 
     </Grid>
 </Window>

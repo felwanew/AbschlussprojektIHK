@@ -43,7 +43,6 @@ namespace AbschlussprojektIHK
                 MailOfInstructor = Tb_MailOfInstructor.Text,
                 UserIsOnline = false,
                 EmailUser = Tb_MailOfTrainee.Text,
-                PasswordUser = Pb_PasswordOfTraineeMail.Password
             };
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText(@"User.json", json);

@@ -13,7 +13,7 @@ namespace AbschlussprojektIHK
 {
     public static class ClsEmail
     {
-
+        public static string Password { get; set; }
         //============< ClsEmail >============
 
         public static async Task<bool> Send_EmailAsync(string sTitle, string sText)
@@ -29,7 +29,7 @@ namespace AbschlussprojektIHK
 
             email.To.Add("felwanew@gmail.com");            //mail of instructor
 
-            email.From = new MailAddress("felwanew@outlook.de", "");     //mail of referee
+            email.From = new MailAddress("felwanew@outlook.de", "AppName");     //mail of referee + Name for App
 
             email.Subject = sTitle;
 
@@ -64,7 +64,7 @@ namespace AbschlussprojektIHK
 
             //</ ssl >
 
-            client.Credentials = new NetworkCredential("felwanew@outlook.de", "Q.E.D.-9.99");   //Usermail, Userpassword for Mailaccount --> definied in JSON
+            client.Credentials = new NetworkCredential("felwanew@outlook.de", Password);   //Usermail --> defined in JSON | Userpassword for Mailaccount --> User must type it, when necessary
 
             //</ email-server >
 

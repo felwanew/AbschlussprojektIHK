@@ -57,7 +57,7 @@ namespace AbschlussprojektIHK
         }
         private void Btn_CurrentStatusOfPresence_Click(object sender, RoutedEventArgs e)
         {
-            PasswordCheck passwordCheck = new PasswordCheck();
+            PasswordCheck passwordCheck = new PasswordCheck(Tb_StatusOfWork.Text, Tb_CurrentStatusOfPresence.Text);
             passwordCheck.ShowDialog();
         }
     }

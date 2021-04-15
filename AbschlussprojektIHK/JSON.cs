@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace AbschlussprojektIHK
 {
+    //class for the JSON logic
     class JSON
     {
         static public User DeserializeUser()

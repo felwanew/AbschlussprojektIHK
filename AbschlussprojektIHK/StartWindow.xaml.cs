@@ -26,7 +26,7 @@ namespace AbschlussprojektIHK
         public StartWindow()
         {            
             InitializeComponent();
-            if (File.Exists(@"User.json"))
+            if (File.Exists(@"User.json")) //close Startwindow when User.json already exist at start
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.ShowDialog();
@@ -34,7 +34,7 @@ namespace AbschlussprojektIHK
             }
         }
 
-        private void Btn_Submit_Click(object sender, RoutedEventArgs e)
+        private void Btn_Submit_Click(object sender, RoutedEventArgs e) //take values from the Textbox (and the Password box) and transfer them into a Json-File
         {
             User user = new User
             {
@@ -43,7 +43,7 @@ namespace AbschlussprojektIHK
                 MailOfInstructor = Tb_MailOfInstructor.Text,
                 UserIsOnline = false,
                 EmailUser = Tb_MailOfTrainee.Text,
-                PasswordUser = Pb_PasswordOfTraineeMail.Password
+                Password = Pwb_Password.Password
             };
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText(@"User.json", json);

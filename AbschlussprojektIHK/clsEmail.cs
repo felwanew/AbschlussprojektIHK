@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;           //*async
-using System.Net.Mail;                  //*smtp client
-using System.Net;                       //*Network Credential
+using System.Threading.Tasks;           //async
+using System.Net.Mail;                  //smtp client
+using System.Net;                       //Network Credential
 using System.Windows;
-using Windows.ApplicationModel.Email;   //*email
+using Windows.ApplicationModel.Email;   //email
 using Windows.Foundation;
 
 namespace AbschlussprojektIHK
@@ -18,6 +18,9 @@ namespace AbschlussprojektIHK
 
         public static async Task<bool> Send_EmailAsync(string sTitle, string sText)
         {
+            //init + declaration of User from JSON
+            User user = JSON.DeserializeUser();
+
             //------------< send_Email() >------------
 
             //send email with uwp and smtp-server
@@ -26,9 +29,9 @@ namespace AbschlussprojektIHK
 
             MailMessage email = new MailMessage();
 
-            email.To.Add("felwanew@gmail.com");            //mail of instructor
+            email.To.Add(user.MailOfInstructor);            //mail of instructor
 
-            email.From = new MailAddress("felwanew@outlook.de", "Angezeigter Name");     //mail of referee
+            email.From = new MailAddress(user.EmailUser);     //mail of referee
 
             email.Subject = sTitle;
 
@@ -63,7 +66,7 @@ namespace AbschlussprojektIHK
 
             //</ ssl >
 
-            client.Credentials = new NetworkCredential("felwanew@outlook.de", "Q.E.D.-9.99");   //Usermail, Userpassword for Mailaccount --> definied in JSON
+            client.Credentials = new NetworkCredential(user.EmailUser, user.Password);   //Usermail, Userpassword for Mailaccount --> definied in JSON
 
             //</ email-server >
 

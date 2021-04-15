@@ -26,7 +26,7 @@ namespace AbschlussprojektIHK
             InitializeComponent();
         }
 
-        private void Btn_ResetOk_Click(object sender, RoutedEventArgs e)
+        private void Btn_ResetOk_Click(object sender, RoutedEventArgs e) //Delete JSON and call startwindow 
         {
             File.Delete(@"User.json");
             StartWindow startWindow = new StartWindow();

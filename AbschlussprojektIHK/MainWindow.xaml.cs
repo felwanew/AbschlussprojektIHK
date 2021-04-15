@@ -25,12 +25,12 @@ namespace AbschlussprojektIHK
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow() 
         {
             InitializeComponent();
             //change content of StatusOfPresence
             User user = JSON.DeserializeUser();
-            if (user.UserIsOnline == false)
+            if (user.UserIsOnline == false) //check, is the user online or offline
             { // user is offline = false    user is online = true
                 Btn_CurrentStatusOfPresence.Content = "Anmelden";
                 Tb_CurrentStatusOfPresence.Text = "Sie sind abgemeldet";
@@ -49,13 +49,13 @@ namespace AbschlussprojektIHK
         {
             this.Close();
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Btn_Reset_Click(object sender, RoutedEventArgs e) //call SecurityQuestionReset Window
         {
             this.Close();
             SecurityQuestionReset securityQuestionReset = new SecurityQuestionReset();
             securityQuestionReset.ShowDialog();
         }
-        private async void Btn_CurrentStatusOfPresence_ClickAsync(object sender, RoutedEventArgs e)
+        private async void Btn_CurrentStatusOfPresence_ClickAsync(object sender, RoutedEventArgs e) //call method to send mail + change the mainwindow to show the user, if online or offline
         {
             User user = JSON.DeserializeUser();
             string statusOfPresence;
@@ -75,7 +75,7 @@ namespace AbschlussprojektIHK
                 Tb_StatusOfWork.IsEnabled = false;
                 JSON.ChangeUserIsOnline(user);
             }
-            await ClsEmail.Send_EmailAsync(user.Firstname + " " + user.Familyname + " ist jetzt " + statusOfPresence,Tb_StatusOfWork.Text); //probably issue with the smtp server
+            await ClsEmail.Send_EmailAsync(user.Firstname + " " + user.Familyname + " ist jetzt " + statusOfPresence, Tb_StatusOfWork.Text);
         }
     }
 }

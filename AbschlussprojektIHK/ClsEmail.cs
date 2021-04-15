@@ -13,7 +13,7 @@ namespace AbschlussprojektIHK
 {
     public static class ClsEmail
     {
-
+        public static string Password { get; set; }
         //============< ClsEmail >============
 
         public static async Task<bool> Send_EmailAsync(string sTitle, string sText)

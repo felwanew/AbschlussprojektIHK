@@ -26,6 +26,7 @@ namespace AbschlussprojektIHK
         public StartWindow()
         {            
             InitializeComponent();
+
             if (File.Exists(@"User.json")) //close Startwindow when User.json already exist at start
             {
                 MainWindow mainWindow = new MainWindow();
@@ -46,7 +47,7 @@ namespace AbschlussprojektIHK
                 Password = Pwb_Password.Password
             };
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
-            File.WriteAllText(@"User.json", json);
+            File.WriteAllText(@"appsettings.json", json);
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();

@@ -16,7 +16,7 @@ namespace AbschlussprojektIHK
         
         public IServiceProvider ServiceProvider { get; private set; }
 
-    public IConfiguration Configuration { get; private set; }
+        public IConfiguration Configuration { get; private set; }
 
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -26,13 +26,14 @@ namespace AbschlussprojektIHK
 
         Configuration = builder.Build();
 
-        Console.WriteLine(Configuration.GetConnectionString("BloggingDatabase"));
+        //Console.WriteLine(Configuration.GetConnectionString("BloggingDatabase"));
 
         var serviceCollection = new ServiceCollection();
         ConfigureServices(serviceCollection);
 
         ServiceProvider = serviceCollection.BuildServiceProvider();
-
+        //check if user have filled formular
+        if()
         var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
         mainWindow.Show();
     }

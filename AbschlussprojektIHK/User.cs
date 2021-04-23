@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace AbschlussprojektIHK
 {
@@ -17,18 +11,15 @@ namespace AbschlussprojektIHK
         [JsonProperty("MailOfInstructor")]
         public string MailOfInstructor { get; set; }
         [JsonProperty("UserIsOnline")]
-        public bool UserIsOnline { get; set; }
-        [JsonProperty("EmailUser")]
         public string EmailUser { get; set; }
         [JsonProperty("Password")]
         public string Password { get; set; }
         public User() { }
-        public User(string _firstname, string _familyname, string _mailOfInstructor, bool _userIsOnline, string _emailUser, string _password)
+        public User(string _firstname, string _familyname, string _mailOfInstructor, string _emailUser, string _password)
         {
             Firstname = _firstname;
             Familyname = _familyname;
             MailOfInstructor = _mailOfInstructor;
-            UserIsOnline = _userIsOnline;
             EmailUser = _emailUser;
             Password = _password;
         }

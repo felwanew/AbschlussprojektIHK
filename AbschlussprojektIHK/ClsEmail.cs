@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;           //async
-using System.Net.Mail;                  //smtp client
 using System.Net;                       //Network Credential
-using System.Windows;
-using Windows.ApplicationModel.Email;   //email
-using Windows.Foundation;
+using System.Net.Mail;                  //smtp client
+using System.Threading.Tasks;           //async
 
 namespace AbschlussprojektIHK
 {
@@ -48,7 +42,7 @@ namespace AbschlussprojektIHK
             {
                 client.Host = "smtp-mail.outlook.com"; //Smtp Server
             }
-            catch(ArgumentException e)
+            catch (ArgumentException e)
             {
                 Console.Error.WriteLine(e);
             }

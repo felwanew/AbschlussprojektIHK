@@ -1,22 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Reflection;
-using System.Runtime.InteropServices;
+﻿using System.Windows;
 
 namespace AbschlussprojektIHK
 {
@@ -25,24 +7,24 @@ namespace AbschlussprojektIHK
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow() 
+        public MainWindow()
         {
             InitializeComponent();
             //change content of StatusOfPresence
-            User user = JSON.DeserializeUser();
-            if (user.UserIsOnline == false) //check, is the user online or offline
+            Appsettings appsettings = JSON.DeserializeUser();
+            if (appsettings.UserIsOnline == false) //check, is the user online or offline
             { // user is offline = false    user is online = true
                 Btn_CurrentStatusOfPresence.Content = "Anmelden";
                 Tb_CurrentStatusOfPresence.Text = "Sie sind abgemeldet";
-                user.UserIsOnline = true;
-                JSON.SerializeUser(user);
+                appsettings.UserIsOnline = true;
+                JSON.SerializeUser(appsettings);
             }
             else
             {
                 Btn_CurrentStatusOfPresence.Content = "Abmelden";
                 Tb_CurrentStatusOfPresence.Text = "Sie sind angemeldet";
-                user.UserIsOnline = false;
-                JSON.SerializeUser(user);
+                appsettings.UserIsOnline = false;
+                JSON.SerializeUser(appsettings);
             }
         }
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
@@ -51,21 +33,22 @@ namespace AbschlussprojektIHK
         }
         private void Btn_Reset_Click(object sender, RoutedEventArgs e) //call SecurityQuestionReset Window
         {
-            this.Close();
+
             SecurityQuestionReset securityQuestionReset = new SecurityQuestionReset();
             securityQuestionReset.ShowDialog();
+            this.Close();
         }
         private async void Btn_CurrentStatusOfPresence_ClickAsync(object sender, RoutedEventArgs e) //call method to send mail + change the mainwindow to show the user, if online or offline
         {
-            User user = JSON.DeserializeUser();
+            Appsettings appsettings = JSON.DeserializeUser();
             string statusOfPresence;
-            if (user.UserIsOnline == false)
+            if (user.appsettings == false)
             { // user is offline = false    user is online = true
                 Btn_CurrentStatusOfPresence.Content = "Anmelden";
                 Tb_CurrentStatusOfPresence.Text = "offline";
                 statusOfPresence = Tb_CurrentStatusOfPresence.Text;
                 Tb_StatusOfWork.IsEnabled = true;
-                JSON.ChangeUserIsOnline(user);
+                JSON.ChangeAppsettingsIsOnline(appsettings);
             }
             else
             {
@@ -73,8 +56,9 @@ namespace AbschlussprojektIHK
                 Tb_CurrentStatusOfPresence.Text = "online";
                 statusOfPresence = Tb_CurrentStatusOfPresence.Text;
                 Tb_StatusOfWork.IsEnabled = false;
-                JSON.ChangeUserIsOnline(user);
+                JSON.ChangeAppsettingsIsOnline(appsettings);
             }
+            User user = JSON.DeserializeUser();
             await ClsEmail.Send_EmailAsync(user.Firstname + " " + user.Familyname + " ist jetzt " + statusOfPresence, Tb_StatusOfWork.Text);
         }
     }

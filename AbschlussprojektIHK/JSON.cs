@@ -1,44 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace AbschlussprojektIHK
 {
     //class for the JSON logic
     class JSON
     {
-        static public User DeserializeUser()
+        static public User ReadUser()
         {
-            var json = File.ReadAllText(@"appsettings.json");
+            var json = File.ReadAllText(@"User.json");
             return _ = JsonConvert.DeserializeObject<User>(json);
         }
-        static public void SerializeUser(User user)
+        static public User ReadAppsettings()
+        {
+            var json = File.ReadAllText(@"User.json");
+            return _ = JsonConvert.DeserializeObject<User>(json);
+        }
+        static public void WriteUser(User user)
         {
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
+            File.WriteAllText(@"User.json", json);
+        }
+        static public void ChangeAppsettingsIsOnline(Appsettings appsettings)
+        {
+            appsettings.UserIsOnline = !appsettings.UserIsOnline;
+            var json = JsonConvert.SerializeObject(appsettings);
             File.WriteAllText(@"appsettings.json", json);
-        }
-        static public void ChangeUserIsOnline(User user)
-        {
-            user.UserIsOnline = !user.UserIsOnline;
-            var json = JsonConvert.SerializeObject(user);
-            File.WriteAllText(@"appsettings.json", json);
-        }
-        static public User ReadJSON()
-        {
-            JObject json = JObject.Parse(File.ReadAllText(@"appsettings.json"));
-            using (StreamReader file = File.OpenText(@"appsettings.json"))
-            using (JsonTextReader reader = new JsonTextReader(file))
-            {
-                JObject o2 = (JObject)JToken.ReadFrom(reader);
-            }
-        }
-        static public void WriteJSON()
-        {
-            
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System;
 
 namespace AbschlussprojektIHK
 {
@@ -59,7 +60,15 @@ namespace AbschlussprojektIHK
             }
             JSON.ChangeAppsettingsIsOnline(appsettings);
             User user = JSON.ReadUser();
-            await ClsEmail.Send_EmailAsync(user.Firstname + " " + user.Familyname + " hat sich " + statusOfPresence, Tb_StatusOfWork.Text);
+            try
+            {
+                await ClsEmail.Send_EmailAsync(user.Firstname + " " + user.Familyname + " hat sich " + statusOfPresence, Tb_StatusOfWork.Text);
+            }
+            catch(ArgumentException f)
+            {
+                Console.WriteLine(f);
+            }
+
         }
     }
 }

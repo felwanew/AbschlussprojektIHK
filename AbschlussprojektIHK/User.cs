@@ -24,15 +24,10 @@ namespace AbschlussprojektIHK
             EmailUser = _emailUser;
             Password = _password;
         }
-        public string GetFirstname()
-        {
-            return Firstname;
-        }
     }
 
-    internal interface IUser
+    public interface IUser
     {
-        string GetFirstname();
         string Firstname { get; set; }
         string Familyname { get; set; }
         string MailOfInstructor { get; set; }

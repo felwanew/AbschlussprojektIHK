@@ -73,6 +73,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Appsettings.cs" />
+    <Compile Include="ArgumentException.cs" />
     <Compile Include="ClsEmail.cs" />
     <Compile Include="JSON.cs" />
     <Compile Include="SecurityQuestionReset.xaml.cs">

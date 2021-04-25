@@ -16,7 +16,7 @@ namespace AbschlussprojektIHK
         {
             InitializeComponent();
             user = JSON.ReadUser();
-            Tb_Surname.Text = user.Firstname;
+            Tb_Firstname.Text = user.Firstname;
             Tb_Familyname.Text = user.Familyname;
             Tb_MailOfInstructor.Text = user.MailOfInstructor;
             Tb_MailOfTrainee.Text = user.EmailUser;
@@ -25,7 +25,7 @@ namespace AbschlussprojektIHK
 
         private void Btn_Submit_Click(object sender, RoutedEventArgs e) //take values from the Textbox (and the Password box) and transfer them into a Json-File
         {
-            user.Firstname = Tb_Surname.Text;
+            user.Firstname = Tb_Firstname.Text;
             user.Familyname = Tb_Familyname.Text;
             user.MailOfInstructor = Tb_MailOfInstructor.Text;
             user.EmailUser = Tb_MailOfTrainee.Text;

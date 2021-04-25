@@ -15,24 +15,26 @@ namespace AbschlussprojektIHK
         private IHost _host;
         private readonly Appsettings appsettings;
         private readonly User user;
+
         public IServiceProvider ServiceProvider { get; private set; }
 
         public IConfiguration Configuration { get; private set; }
 
         public App()
         {
+            //File.Decrypt("User.json");
             _host = new HostBuilder()
                         .ConfigureAppConfiguration((context, configurationBuilder) =>
                         {
                             configurationBuilder.SetBasePath(context.HostingEnvironment.ContentRootPath);
                             configurationBuilder.AddJsonFile("Appsettings.json", optional: false, reloadOnChange: true);
-                            configurationBuilder.AddJsonFile("User.json", optional: false, reloadOnChange: true);
+                            configurationBuilder.AddJsonFile("User.json", optional: true, reloadOnChange: true);
                         })
                         .ConfigureServices((context, services) =>
                         {
                             services.Configure<Appsettings>(context.Configuration);
                             services.Configure<User>(context.Configuration);
-
+                            
                             services.AddSingleton<IUser, User>();
                             services.AddSingleton<IAppsettings, Appsettings>();
 
@@ -42,31 +44,19 @@ namespace AbschlussprojektIHK
                         })
                         .Build();
         }
-
-
         protected void OnStartup(object sender, StartupEventArgs e)
         {
-            if (File.Exists("User.json")) //close Startwindow when User.json already exist at start
-            {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.ShowDialog();
-            }
-            else
-            {
-                StartWindow startWindow = new StartWindow();
-                startWindow.ShowDialog();
-            }
- 
-            //var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            //mainWindow.Show();
-
         }
         private async void OnExit(object sender, ExitEventArgs e)
         {
+
             using (_host)
             {
-                await _host.StopAsync(TimeSpan.FromSeconds(5));
+                await _host.StopAsync(TimeSpan.FromSeconds(15));
             }
+            //File.Encrypt(@"User.json");
         }
     }
 }

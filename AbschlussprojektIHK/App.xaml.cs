@@ -13,48 +13,60 @@ namespace AbschlussprojektIHK
     public partial class App : Application
     {
         private IHost _host;
-
-        public App()
-        {
-            _host = new HostBuilder().Build();
-        }
+        private readonly Appsettings appsettings;
+        private readonly User user;
         public IServiceProvider ServiceProvider { get; private set; }
 
         public IConfiguration Configuration { get; private set; }
 
+        public App()
+        {
+            _host = new HostBuilder()
+                        .ConfigureAppConfiguration((context, configurationBuilder) =>
+                        {
+                            configurationBuilder.SetBasePath(context.HostingEnvironment.ContentRootPath);
+                            configurationBuilder.AddJsonFile("Appsettings.json", optional: false, reloadOnChange: true);
+                            configurationBuilder.AddJsonFile("User.json", optional: false, reloadOnChange: true);
+                        })
+                        .ConfigureServices((context, services) =>
+                        {
+                            services.Configure<Appsettings>(context.Configuration);
+                            services.Configure<User>(context.Configuration);
+
+                            services.AddSingleton<IUser, User>();
+                            services.AddSingleton<IAppsettings, Appsettings>();
+
+                            services.AddSingleton<StartWindow>();
+                            services.AddSingleton<MainWindow>();
+                            services.AddSingleton<SecurityQuestionReset>();
+                        })
+                        .Build();
+        }
+
+
         protected void OnStartup(object sender, StartupEventArgs e)
         {
-            var builder = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile(@"appsettings.json", optional: false, reloadOnChange: true);
-
-            Configuration = builder.Build();
-
-            var serviceCollection = new ServiceCollection();
-            ConfigureServices(serviceCollection);
-
-            ServiceProvider = serviceCollection.BuildServiceProvider();
-            //check if user have filled formular
-            User user = new User();
-            user = JSON.DeserializeUser();
-            if (user.Firstname == "")
+            if (File.Exists("User.json")) //close Startwindow when User.json already exist at start
             {
-                var startWindow = ServiceProvider.GetRequiredService<StartWindow>();
-                startWindow.Show();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.ShowDialog();
             }
             else
             {
-                var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-                mainWindow.Show();
+                StartWindow startWindow = new StartWindow();
+                startWindow.ShowDialog();
             }
+ 
+            //var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            //mainWindow.Show();
 
         }
-
-        private void ConfigureServices(IServiceCollection services)
+        private async void OnExit(object sender, ExitEventArgs e)
         {
-            // ...
-
-            services.AddTransient(typeof(MainWindow));
+            using (_host)
+            {
+                await _host.StopAsync(TimeSpan.FromSeconds(5));
+            }
         }
     }
 }

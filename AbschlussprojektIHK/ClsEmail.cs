@@ -7,13 +7,11 @@ namespace AbschlussprojektIHK
 {
     public static class ClsEmail
     {
-        public static string Password { get; set; }
         //============< ClsEmail >============
-
         public static async Task<bool> Send_EmailAsync(string sTitle, string sText)
         {
             //init + declaration of User from JSON
-            User user = JSON.DeserializeUser();
+            User user = JSON.ReadUser();
 
             //------------< send_Email() >------------
 

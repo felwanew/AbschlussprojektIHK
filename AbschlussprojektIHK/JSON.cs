@@ -9,9 +9,9 @@ namespace AbschlussprojektIHK
     {
         static public User ReadUser()
         {
-            //File.Decrypt("User.json");
+            File.Decrypt("User.json");
             var json = File.ReadAllText("User.json");
-            //File.Encrypt("User.json");
+            File.Encrypt("User.json");
             return _ = JsonConvert.DeserializeObject<User>(json);
         }
         static public Appsettings ReadAppsettings()
@@ -21,10 +21,10 @@ namespace AbschlussprojektIHK
         }
         static public void WriteUser(User user)
         {
-            //File.Decrypt("User.json");
+            File.Decrypt("User.json");
             string json = JsonConvert.SerializeObject(user, Formatting.Indented);
             File.WriteAllText("User.json", json);
-            //File.Encrypt("User.json");
+            File.Encrypt("User.json");
         }
         static public void ChangeAppsettingsIsOnline(Appsettings appsettings)
         {

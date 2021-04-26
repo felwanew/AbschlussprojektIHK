@@ -3,7 +3,7 @@ using System;
 
 namespace AbschlussprojektIHK
 {
-    class User : IUser
+    class User
     {
         [JsonProperty("Firstname")]
         public string Firstname { get; set; }
@@ -24,14 +24,5 @@ namespace AbschlussprojektIHK
             EmailUser = _emailUser;
             Password = _password;
         }
-    }
-
-    public interface IUser
-    {
-        string Firstname { get; set; }
-        string Familyname { get; set; }
-        string MailOfInstructor { get; set; }
-        string EmailUser { get; set; }
-        string Password { get; set; }
     }
 }

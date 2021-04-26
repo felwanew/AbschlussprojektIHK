@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace AbschlussprojektIHK
 {
-    class Appsettings : IAppsettings
+    class Appsettings
     {
         [JsonProperty("UserIsOnline")]
         public bool UserIsOnline { get; set; }
@@ -17,16 +17,5 @@ namespace AbschlussprojektIHK
         {
             UserIsOnline = _userIsOnline;
         }
-        public Appsettings(IOptions<Appsettings> options)
-        {
-            UserIsOnline = options.Value.UserIsOnline;
-        }
-
-
-    }
-
-    internal interface IAppsettings
-    {
-        bool UserIsOnline { get; set; }
     }
 }

@@ -2,8 +2,6 @@
 using System.IO;
 using System.Windows;
 
-
-
 namespace AbschlussprojektIHK
 {
     /// <summary>

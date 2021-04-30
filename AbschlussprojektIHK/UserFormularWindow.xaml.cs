@@ -7,10 +7,10 @@ namespace AbschlussprojektIHK
     /// <summary>
     /// Interaktionslogik für StartWindow.xaml
     /// </summary>
-    public partial class StartWindow : Window
+    public partial class UserFormularWindow : Window
     {
         private User user = new User();
-        public StartWindow()
+        public UserFormularWindow()
         {
             InitializeComponent();
             user = JSON.ReadUser();

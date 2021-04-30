@@ -73,14 +73,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Appsettings.cs" />
-    <Compile Include="ArgumentException.cs" />
     <Compile Include="ClsEmail.cs" />
     <Compile Include="JSON.cs" />
     <Compile Include="SecurityQuestionReset.xaml.cs">
       <DependentUpon>SecurityQuestionReset.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
+    <Compile Include="UserFormularWindow.xaml.cs">
+      <DependentUpon>UserFormularWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Page Include="MainWindow.xaml">
@@ -99,7 +98,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StartWindow.xaml">
+    <Page Include="UserFormularWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,10 +18,6 @@ namespace AbschlussprojektIHK
         }
         protected void OnStartup(object sender, StartupEventArgs e)
         {
-            if ()
-            {
-
-            }
             if (File.Exists("User.json"))
             {
                 UserFormularWindow startWindow = new UserFormularWindow();

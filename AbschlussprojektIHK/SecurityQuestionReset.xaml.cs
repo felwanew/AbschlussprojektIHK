@@ -21,7 +21,6 @@ namespace AbschlussprojektIHK
             mainWindow.Close();
             Close();
         }
-
         private void Btn_Abbrechen_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

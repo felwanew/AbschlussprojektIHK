@@ -30,7 +30,7 @@ namespace AbschlussprojektIHK
             }
 
         }
-        private void OnExit(object sender, ExitEventArgs e)
+        protected void OnExit(object sender, ExitEventArgs e)
         {
 
         }

@@ -21,7 +21,7 @@ namespace AbschlussprojektIHK
             Pwb_Password.Password = user.Password;
         }
 
-        private void Btn_Submit_Click(object sender, RoutedEventArgs e) //take values from the Textbox (and the Password box) and transfer them into a Json-File
+        public void Btn_Submit_Click(object sender, RoutedEventArgs e) //take values from the Textbox (and the Password box) and transfer them into a Json-File
         {
             user.Firstname = Tb_Firstname.Text;
             user.Familyname = Tb_Familyname.Text;

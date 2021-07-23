@@ -20,7 +20,7 @@ namespace AbschlussprojektIHK
         {
             if (File.Exists("User.json"))
             {
-                StartWindow startWindow = new StartWindow();
+                UserFormularWindow startWindow = new UserFormularWindow();
                 startWindow.ShowDialog();
             }
             else
@@ -30,7 +30,7 @@ namespace AbschlussprojektIHK
             }
 
         }
-        private async void OnExit(object sender, ExitEventArgs e)
+        protected void OnExit(object sender, ExitEventArgs e)
         {
 
         }

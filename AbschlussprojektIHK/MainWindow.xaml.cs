@@ -24,7 +24,6 @@ namespace AbschlussprojektIHK
                 Btn_CurrentStatusOfPresence.Content = "Abmelden";
                 Tb_CurrentStatusOfPresence.Text = "Sie sind eingeloggt";
                 appsettings.UserIsOnline = false;
-                
             }
             JSON.ChangeAppsettingsIsOnline(appsettings);
         }

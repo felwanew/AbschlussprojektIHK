@@ -12,11 +12,8 @@ namespace AbschlussprojektIHK
         {
             //init + declaration of User from JSON
             User user = JSON.ReadUser();
-
             //------------< send_Email() >------------
-
             //send email with uwp and smtp-server
-
             //< email >
 
             MailMessage email = new MailMessage();
@@ -30,9 +27,6 @@ namespace AbschlussprojektIHK
             email.Body = sText;
 
             //</ email >
-
-
-
             //< email-server >
 
             SmtpClient client = new SmtpClient();
@@ -44,43 +38,22 @@ namespace AbschlussprojektIHK
             {
                 Console.Error.WriteLine(e);
             }
-
-
             client.UseDefaultCredentials = false;
-
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             //< ssl >
-
             client.Port = 587;
-
             client.EnableSsl = true;
-
             //</ ssl >
 
             client.Credentials = new NetworkCredential(user.EmailUser, user.Password);   //Usermail, Userpassword for Mailaccount --> definied in JSON
-
             //</ email-server >
-
-
-
             //< send >
-
-            await client.SendMailAsync(email);      //*no error message
-
-            //client.Send(email);                   //*with error message
-
+            await client.SendMailAsync(email);
             //</ send >
-
-
-
             return true;
-
             //------------</ send_Email() >------------
-
         }
-
-        //============</ ClsEmail >============
-
+        //============</ ClsEmail >===========
     }
 }
